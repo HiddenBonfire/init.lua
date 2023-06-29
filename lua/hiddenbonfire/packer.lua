@@ -11,13 +11,21 @@ return require('packer').startup(function(use)
 		-- or                           , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
-	use({ 'rose-pine/neovim', as = 'rose-pine', config = function() vim.cmd('colorscheme rose-pine') end })
+    use {'Shatur/neovim-ayu', config = function() vim.cmd.colorscheme("ayu") end }
 
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('theprimeagen/harpoon')
 	use('mbbill/undotree')
 	use('tpope/vim-fugitive')
-    use('theprimeagen/vim-be-good')
+    use{'folke/todo-comments.nvim', requires = {'nvim-lua/plenary.nvim'}, opts = {}}
+    use({
+        "folke/trouble.nvim",
+        config = function()
+            require("trouble").setup {
+                icons = false,
+            }
+        end
+    })
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',
@@ -41,5 +49,6 @@ return require('packer').startup(function(use)
 			{'rafamadriz/friendly-snippets'},
 		}
 	}
+    use("eandrju/cellular-automaton.nvim")
 
 end)
